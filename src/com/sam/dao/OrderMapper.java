@@ -1,0 +1,9 @@
+package com.sam.dao;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class OrderMapper {
+
+	
+}

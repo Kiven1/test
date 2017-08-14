@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.sam.dao.ProductMapper">
+   <select id="findProductByCategory" resultMap="product-result" parameterType="int">
+     select * from product,category where product.category_id=#{category_id} 
+     and product.category_id=category.category_id
+   </select>
+   <resultMap type="com.sam.pojo.Product" id="product-result">
+     <id property="pid" column="pid" />
+     <result property="pname" column="pname"/>
+     <result property="pquantity" column="pquantity"/>
+     <result property="pprice" column="pprice"/>
+     <association property="category" javaType="com.sam.pojo.Category">
+       <id property="category_id" column="category_id"/>
+       <result property="category_name" column="category_name"/> 
+     </association>
+   </resultMap>
+   
+<!--    <select id="findProductById" resultType="com.sam.pojo.Product" parameterType="int">
+     select * from product where pid=#{pid}
+   </select> -->
+  </mapper>
